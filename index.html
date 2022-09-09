@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Teams</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Basic GitHub Teams</h1>
+        </header>
+        <article>
+            <h2>Método con Fork.</h2>
+            <p>En este método se creará una Fork. Consiste en la duplicación del repositorio original, en el cual se
+                realizaran los cambios deseados. Una vez finalizado los cambios en nuestra Fork, se mergea con el
+                repositorio original.</p>
+            <p>Este método nos da libertad de poder hacer los cambios directamente en nuestro repositorio propio.</p>
+
+            <h3>Paso 1: Crear Fork.</h3>
+            <p>Comenzaremos creando la duplicación del repositorio (Fork). Para hacer esto, nos dirigimos al repositorio
+                en GitHub, y clickearemos el boton Fork.</p>
+            <div class="imgDiv">
+                <img src="./assets/img/fork button.png" alt="">
+            </div>
+            <div class="imgDiv">
+                <img src="./assets/img/create fork.png" alt="">
+            </div>
+
+            <h3>Paso 2: Clonar Fork.</h3>
+            <p>Para poder trabajar en el repositorio duplicado, necesitaremos clonar la Fork a nuestro sistema local.
+            </p>
+            <code>
+                $ <span style="color: rgb(192, 108, 162)">git</span> clone <span style="font-style: italic;">https://github.com/nachomtt/test_nacho.git</span>
+            </code>
+            <p>Clonar el repositorio, traerá una carpeta con el nombre del repositorio, y los archivos. Necesitamos
+                acceder a la carpeta.</p>
+            <code>
+                $ <span style="color: rgb(41, 131, 187)">cd</span> <span style="font-style: italic;">test_nacho/</span>
+            </code>
+
+            <h3>Paso 3: Crear branch "dev".</h3>
+            <p>No es buena practica trabajar sobre el master directamente. Crearemos una branch dev para trabajar ahi.
+            </p>
+            <code>
+                $ <span style="color: rgb(192, 108, 162)">git</span> checkout <span style="color: rgb(255, 255, 174);">-b</span> <span style="color: rgb(76, 220, 90);">dev</span>
+                <br>
+                <span style="font-style: italic;color: rgb(95, 107, 134);">//-b se utiliza una única vez para CREAR la branch.</span>
+            </code>
+            <p>Una vez finalizado nuestro trabajo en la branch "dev", procedemos a agregar todos los archivos cambiados
+                o nuevos.</p>
+            <code>
+                $ <span style="color: rgb(192, 108, 162)">git</span> add <span style="font-style: italic;">.</span>
+            </code>
+            <p>Realizamos un commit para confirmar.</p>
+            <code>
+            $ <span style="color: rgb(192, 108, 162)">git</span> commit -m <span style="font-style: italic;">"Comentario sobre el commit"</span>
+            </code>
+
+            <h3>Paso 4: Pushear a nuestro repositorio.</h3>
+            <p>El siguiente paso es pushear hacia nuestra Fork. <br><br>
+                Si es nuestro primer push de la branch:</p>
+            <code>
+                $ <span style="color: rgb(192, 108, 162)">git</span> push <span style="color: rgb(255, 100, 100);">-u origin</span> <span style="color: rgb(76, 220, 90);">dev</span>
+            </code>
+            <p>En los siguientes push, solamente escribir:</p>
+            <code>
+                $ <span style="color: rgb(192, 108, 162)">git</span> push
+            </code>
+
+            <h3>Paso 5: Mergear "master" con "dev".</h3>
+            <p>Cuando ya estamos seguros de que la dev está funcionando correctamente, segun lo esperado, se realiza un
+                merge de la master branch con dev.</p>
+            <br>
+            <ul>
+                <li><p>Nos dirigimos a la opción de "Pull requests" en GitHub.</p></li>
+                <li><p>Luego creamos una pull request.</p></li>
+            </ul>
+            <div class="imgDiv">
+                <img src="./assets/img/new pull request.png" alt="">
+            </div>
+            <p>Procedemos a elegir el destino del merge ("master" de nuestro repositorio duplicado) y el origen ("dev").</p>
+            <div class="imgDiv">
+                <img src="./assets/img/pull branches.png" alt="">
+            </div>
+
+            <h3>Paso 6: Pull de Fork a local "master". (Opcional)</h3>
+            <p>Se "traen" los archivos de la Fork a nuestro local.</p>
+            <p>Este paso es opcional, principalmente para evitar conflicos entre los archivos locales y el repositorio.</p>
+            <code>
+                $ <span style="color: rgb(192, 108, 162)">git</span> checkout <span style="color: rgb(76, 220, 90);">master</span>
+            </code>
+            <code>
+                $ <span style="color: rgb(192, 108, 162)">git</span> pull
+            </code>
+
+            <h3>Paso 7: Pull request a repositorio ORIGINAL.</h3>
+            <p>Finalmente, para hacer un pull request, al repositorio original del proyecto, se debe</p>
+            <br>
+            <ul>
+                <li><p>Dirigir a la sección de Pull Requests.</p></li>
+                <li><p>En destino, seleccionar repositorio original, no la Fork.</p></li>
+                <li><p>En origen, seleccionar nuestro repositorio, en la branch "master".</p></li>
+                <br>
+                <p>La branch del destino, puede ser "master" o "dev". Esto usualmente se decide entre los integrantes del proyecto, puesto a que probablemente se tenga que revisar, o combinar con partes de otros integrantes. Ante la duda, elegir "dev" u otra. Recordemos que "master" es la versión más estable.</p>
+            </ul>
+        </article>
+        <footer>
+            <p>Con 💜 Ignacio Mattiauda.</p>
+        </footer>
+
+    </main>
+</body>
+
+</html>
