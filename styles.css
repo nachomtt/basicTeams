@@ -118,5 +118,6 @@ footer {
         margin-top: 25px;
         margin-bottom: 25px;
         width: 100%;
+        overflow-x: scroll;
     }
 }
